@@ -1,127 +1,28 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#0d1728" />
-  <title>Atmos — Weather Dashboard</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
-  <script src="script.js" defer></script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101512"><title>EXPENZA — Expense Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"><script src="https://cdn.jsdelivr.net/npm/chart.js"></script><script src="script.js" defer></script>
 </head>
 <body>
-  <div class="app-shell">
-    <aside class="sidebar">
-      <a class="brand" href="#" aria-label="Atmos home">
-        <span class="brand-mark">✳</span>
-        <span>atmos<span class="brand-dot">.</span></span>
-      </a>
-      <div class="side-label">WORKSPACE</div>
-      <nav class="side-nav" aria-label="Main navigation">
-        <a class="nav-link active" href="#overview"><span class="nav-icon">◫</span> Overview</a>
-        <a class="nav-link" href="#forecast"><span class="nav-icon">☼</span> Forecast</a>
-        <a class="nav-link" href="#air-quality"><span class="nav-icon">≋</span> Air quality</a>
-      </nav>
-      <div class="sidebar-bottom">
-        <div class="mini-card">
-          <div class="mini-sun">☀</div>
-          <div>
-            <strong>Weather tip</strong>
-            <p>Check the UV index before heading outside.</p>
-          </div>
-        </div>
-        <div class="sidebar-footer">WEATHER, IN FOCUS.</div>
-      </div>
-    </aside>
-
-    <main class="main-content" id="overview">
-      <header class="topbar">
-        <div>
-          <p class="eyebrow">YOUR PERSONAL WEATHER STATION</p>
-          <h1>Good day, explorer <span>✦</span></h1>
-        </div>
-        <div class="top-actions">
-          <button class="unit-toggle" id="unitToggle" type="button" aria-label="Switch temperature units">°C <span>/</span> °F</button>
-          <div class="avatar">A</div>
-        </div>
-      </header>
-
-      <section class="search-row" aria-label="Find a city">
-        <div class="search-box">
-          <span class="search-icon">⌕</span>
-          <input id="cityInput" type="search" placeholder="Search a city, e.g. London" autocomplete="off" aria-label="City name" />
-          <button id="searchButton" type="button">Search <span>↗</span></button>
-        </div>
-        <button class="location-button" id="locationButton" type="button"><span>◎</span> Use my location</button>
-      </section>
-
-      <div id="statusMessage" class="status-message" role="status" aria-live="polite"></div>
-
-      <section class="hero-weather panel">
-        <div class="hero-orb orb-one"></div>
-        <div class="hero-orb orb-two"></div>
-        <div class="hero-copy">
-          <div class="location-line"><span class="pin">●</span> <span id="cityName">Rahim Yar Khan</span><span class="live-pill"><span></span> LIVE WEATHER</span></div>
-          <div class="current-temp"><span id="currentTemp">--</span><span class="degree">°</span></div>
-          <h2 id="conditionText">Finding your forecast…</h2>
-          <p class="feels-like">Feels like <strong id="feelsLike">--°</strong> <span class="bullet">•</span> H: <strong id="highTemp">--°</strong> L: <strong id="lowTemp">--°</strong></p>
-          <div class="hero-meta">
-            <div><span class="meta-icon">↗</span><span><small>WIND</small><strong id="windSpeed">-- km/h</strong></span></div>
-            <div><span class="meta-icon">◌</span><span><small>HUMIDITY</small><strong id="humidity">--%</strong></span></div>
-            <div><span class="meta-icon">☼</span><span><small>UV INDEX</small><strong id="uvIndex">--</strong></span></div>
-          </div>
-        </div>
-        <div class="weather-art" id="weatherArt" aria-hidden="true">
-          <div class="sun-disc"></div><div class="cloud cloud-back"></div><div class="cloud cloud-front"></div>
-          <span class="spark spark-a">✦</span><span class="spark spark-b">✧</span>
-        </div>
-        <div class="hero-footer"><span id="updatedAt">Connecting to weather service…</span><span>Powered by Open-Meteo</span></div>
-      </section>
-
-      <section class="content-grid">
-        <div class="panel forecast-panel" id="forecast">
-          <div class="section-heading">
-            <div><p class="eyebrow">PLAN AHEAD</p><h2>5-day forecast</h2></div>
-            <span class="section-symbol">↗</span>
-          </div>
-          <div class="forecast-list" id="forecastList">
-            <div class="loading-row">Loading forecast…</div>
-          </div>
-        </div>
-
-        <div class="panel details-panel" id="air-quality">
-          <div class="section-heading">
-            <div><p class="eyebrow">RIGHT NOW</p><h2>Weather details</h2></div>
-            <span class="section-symbol">◌</span>
-          </div>
-          <div class="detail-grid">
-            <article class="detail-tile">
-              <div class="detail-top"><span>Feels like</span><span class="tile-icon">♨</span></div>
-              <strong id="detailFeels">--°</strong><p id="feelsDescription">Loading comfort level</p>
-              <div class="meter"><span id="comfortMeter" style="width:45%"></span></div>
-            </article>
-            <article class="detail-tile">
-              <div class="detail-top"><span>Humidity</span><span class="tile-icon">◌</span></div>
-              <strong id="detailHumidity">--%</strong><p>Relative humidity</p>
-              <div class="meter"><span id="humidityMeter" style="width:40%"></span></div>
-            </article>
-            <article class="detail-tile">
-              <div class="detail-top"><span>Wind speed</span><span class="tile-icon">↗</span></div>
-              <strong id="detailWind">-- <small>km/h</small></strong><p id="windDescription">Air movement</p>
-              <div class="meter"><span id="windMeter" style="width:25%"></span></div>
-            </article>
-            <article class="detail-tile">
-              <div class="detail-top"><span>UV index</span><span class="tile-icon">☼</span></div>
-              <strong id="detailUV">--</strong><p id="uvDescription">Sun exposure risk</p>
-              <div class="meter"><span id="uvMeter" style="width:20%"></span></div>
-            </article>
-          </div>
-        </div>
-      </section>
-      <footer class="page-footer"><span>ATMOS © <span id="year"></span></span><span>Made for curious minds <span class="footer-star">✦</span></span></footer>
-    </main>
-  </div>
-</body>
-</html>
+<div class="shell">
+<aside class="sidebar"><a class="brand" href="#"><span class="brand-icon">E</span> EXPENZA</a><p class="overline">WORKSPACE</p><nav><a class="active" href="#overview">▦　Overview</a><a href="#transactions">↕　Transactions</a><a href="#analytics">◔　Analytics</a><a href="#budget">◎　Budget</a></nav><div class="side-bottom"><div class="tip"><b>✦ Small steps add up.</b><p>Track today. Build better habits tomorrow.</p></div><div class="profile"><span class="avatar">U</span><div><b>My Wallet</b><small>Personal account</small></div></div></div></aside>
+<main>
+<header class="topbar"><div><p class="overline">YOUR MONEY, IN FOCUS</p><h1>Overview <span>✳</span></h1><p class="muted">Here's what's happening with your finances.</p></div><div class="actions"><span class="today" id="todayLabel">Today</span><button class="primary" id="openTransactionModal">＋ Add transaction</button></div></header>
+<section class="summary-grid" id="overview">
+<article class="summary balance"><div class="card-label">Total balance <span>↗</span></div><strong id="totalBalance">$0.00</strong><small>● Income minus expenses</small></article>
+<article class="summary"><div class="card-label">Total income <span class="mint">↙</span></div><strong id="totalIncome">$0.00</strong><small class="mint">＋ Money coming in</small></article>
+<article class="summary"><div class="card-label">Total expenses <span class="red">↗</span></div><strong id="totalExpenses">$0.00</strong><small class="red">− Money going out</small></article>
+<article class="summary"><div class="card-label">Savings rate <span class="mint">％</span></div><strong id="savingsRate">0%</strong><small id="savingsCaption">Your saving snapshot</small></article>
+</section>
+<section class="content-grid">
+<article class="panel" id="analytics"><div class="panel-head"><div><h2>Spending overview</h2><p>See where your money goes.</p></div><select id="chartPeriod"><option value="month">This month</option><option value="all">All time</option></select></div><div class="chart-wrap"><canvas id="spendingChart"></canvas><div id="chartEmpty" class="chart-empty">Add an expense to see your breakdown.</div></div><div id="categoryLegend" class="legend"></div></article>
+<article class="panel" id="budget"><div class="panel-head"><div><h2>Monthly budget</h2><p>Keep your spending on track.</p></div><span class="tag">MONTHLY</span></div><div class="budget-numbers"><div><small>Spent this month</small><strong id="budgetSpent">$0.00</strong></div><div class="right"><small>Budget limit</small><strong id="budgetLimitLabel">$2,000.00</strong> <button class="icon-btn" id="editBudgetBtn" aria-label="Edit budget">✎</button></div></div><div class="track"><div id="budgetProgress"></div></div><div class="budget-caption"><span id="budgetPercent">0% used</span><span id="budgetRemaining">$2,000.00 left</span></div><div class="budget-note"><b>✦</b><p>You're on your way to building a healthier money habit. Keep it up!</p></div></article>
+</section>
+<section class="panel transactions-panel" id="transactions"><div class="panel-head"><div><h2>Recent transactions</h2><p>Every little detail, all in one place.</p></div><button class="link-btn" id="exportCsvBtn">Export CSV ↗</button></div><div class="filters"><label class="search">⌕ <input id="searchTransactions" type="search" placeholder="Search transactions..."></label><select id="typeFilter"><option value="all">All types</option><option value="income">Income</option><option value="expense">Expenses</option></select><select id="categoryFilter"><option value="all">All categories</option></select></div><div class="table-wrap"><table><thead><tr><th>TRANSACTION</th><th>CATEGORY</th><th>DATE</th><th>TYPE</th><th class="right">AMOUNT</th><th></th></tr></thead><tbody id="transactionRows"></tbody></table><div class="empty" id="emptyState"><div class="empty-icon">↗</div><b>No transactions yet</b><p>Add your first income or expense to get started.</p><button class="secondary" id="emptyAddBtn">＋ Add transaction</button></div></div><div class="table-footer"><span id="transactionCount">0 transactions</span><button class="link-btn subtle" id="clearAllBtn">Clear all</button></div></section>
+<footer><span>© <span id="yearLabel"></span> EXPENZA</span><span>Spend intentionally. Live freely.</span></footer>
+</main></div>
+<div class="backdrop" id="transactionModal" aria-hidden="true"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-head"><div><p class="overline">KEEP IT ORGANIZED</p><h2 id="modalTitle">Add transaction</h2></div><button class="icon-btn" id="closeTransactionModal" aria-label="Close">×</button></div><form id="transactionForm"><div class="type-toggle"><label><input type="radio" name="transactionType" value="expense" checked><span>− Expense</span></label><label><input type="radio" name="transactionType" value="income"><span>＋ Income</span></label></div><label class="field">Transaction name<input id="transactionName" name="name" type="text" placeholder="e.g. Grocery shopping" maxlength="80" required></label><div class="form-row"><label class="field">Amount<div class="amount-input">$ <input id="transactionAmount" name="amount" type="number" min="0.01" step="0.01" placeholder="0.00" required></div></label><label class="field">Category<select id="transactionCategory" name="category" required></select></label></div><label class="field">Date<input id="transactionDate" name="date" type="date" required></label><div class="modal-actions"><button type="button" class="secondary" id="cancelTransaction">Cancel</button><button type="submit" class="primary">Save transaction →</button></div></form></section></div><div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body></html>

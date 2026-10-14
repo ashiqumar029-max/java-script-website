@@ -1,22 +1,25 @@
-# Atmos — Weather Dashboard
+# EXPENZA — Expense Tracker
 
-A responsive weather dashboard built with HTML, CSS, and vanilla JavaScript.
+A responsive personal finance dashboard built with HTML, CSS, and vanilla JavaScript.
 
 ## Features
-- Live current weather and 5-day forecast
-- Search for a city
-- Optional browser geolocation
-- Celsius/Fahrenheit toggle (also switches wind units)
-- Humidity, feels-like temperature, wind speed, and UV index
-- Responsive layout for desktop, tablet, and mobile
+- Add income and expense transactions with category and date
+- Automatically calculate balance, income, expenses, and savings rate
+- Monthly budget progress and editable budget limit
+- Category spending chart powered by Chart.js
+- Search and filter transactions
+- Export transactions to CSV
+- Local Storage persistence
+- Responsive dark green dashboard
 
 ## Run locally
 1. Keep `index.html`, `style.css`, and `script.js` in the same folder.
 2. Open the folder in VS Code.
-3. Run `index.html` with the Live Server extension, or use any local static web server.
-4. The app uses the free Open-Meteo forecast and geocoding APIs. An internet connection is required.
+3. Use Live Server to run `index.html`, or open it directly in your browser.
+4. Internet is needed for Google Fonts and Chart.js CDN.
 
-## Notes
-- Location access is optional and only used when the visitor clicks **Use my location**.
-- Weather data is supplied by Open-Meteo.
-- This is a portfolio project; it does not collect or store personal data.
+## Data and currency
+Transactions and budget are stored in this browser's Local Storage; they are not uploaded to a server. The starter currency is USD. In `script.js`, change `CURRENCY` to a supported ISO code such as `PKR` if needed.
+
+## License
+MIT
