@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0d1728" />
+  <title>Atmos — Weather Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="Atmos home">
+        <span class="brand-mark">✳</span>
+        <span>atmos<span class="brand-dot">.</span></span>
+      </a>
+      <div class="side-label">WORKSPACE</div>
+      <nav class="side-nav" aria-label="Main navigation">
+        <a class="nav-link active" href="#overview"><span class="nav-icon">◫</span> Overview</a>
+        <a class="nav-link" href="#forecast"><span class="nav-icon">☼</span> Forecast</a>
+        <a class="nav-link" href="#air-quality"><span class="nav-icon">≋</span> Air quality</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="mini-card">
+          <div class="mini-sun">☀</div>
+          <div>
+            <strong>Weather tip</strong>
+            <p>Check the UV index before heading outside.</p>
+          </div>
+        </div>
+        <div class="sidebar-footer">WEATHER, IN FOCUS.</div>
+      </div>
+    </aside>
+
+    <main class="main-content" id="overview">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">YOUR PERSONAL WEATHER STATION</p>
+          <h1>Good day, explorer <span>✦</span></h1>
+        </div>
+        <div class="top-actions">
+          <button class="unit-toggle" id="unitToggle" type="button" aria-label="Switch temperature units">°C <span>/</span> °F</button>
+          <div class="avatar">A</div>
+        </div>
+      </header>
+
+      <section class="search-row" aria-label="Find a city">
+        <div class="search-box">
+          <span class="search-icon">⌕</span>
+          <input id="cityInput" type="search" placeholder="Search a city, e.g. London" autocomplete="off" aria-label="City name" />
+          <button id="searchButton" type="button">Search <span>↗</span></button>
+        </div>
+        <button class="location-button" id="locationButton" type="button"><span>◎</span> Use my location</button>
+      </section>
+
+      <div id="statusMessage" class="status-message" role="status" aria-live="polite"></div>
+
+      <section class="hero-weather panel">
+        <div class="hero-orb orb-one"></div>
+        <div class="hero-orb orb-two"></div>
+        <div class="hero-copy">
+          <div class="location-line"><span class="pin">●</span> <span id="cityName">Rahim Yar Khan</span><span class="live-pill"><span></span> LIVE WEATHER</span></div>
+          <div class="current-temp"><span id="currentTemp">--</span><span class="degree">°</span></div>
+          <h2 id="conditionText">Finding your forecast…</h2>
+          <p class="feels-like">Feels like <strong id="feelsLike">--°</strong> <span class="bullet">•</span> H: <strong id="highTemp">--°</strong> L: <strong id="lowTemp">--°</strong></p>
+          <div class="hero-meta">
+            <div><span class="meta-icon">↗</span><span><small>WIND</small><strong id="windSpeed">-- km/h</strong></span></div>
+            <div><span class="meta-icon">◌</span><span><small>HUMIDITY</small><strong id="humidity">--%</strong></span></div>
+            <div><span class="meta-icon">☼</span><span><small>UV INDEX</small><strong id="uvIndex">--</strong></span></div>
+          </div>
+        </div>
+        <div class="weather-art" id="weatherArt" aria-hidden="true">
+          <div class="sun-disc"></div><div class="cloud cloud-back"></div><div class="cloud cloud-front"></div>
+          <span class="spark spark-a">✦</span><span class="spark spark-b">✧</span>
+        </div>
+        <div class="hero-footer"><span id="updatedAt">Connecting to weather service…</span><span>Powered by Open-Meteo</span></div>
+      </section>
+
+      <section class="content-grid">
+        <div class="panel forecast-panel" id="forecast">
+          <div class="section-heading">
+            <div><p class="eyebrow">PLAN AHEAD</p><h2>5-day forecast</h2></div>
+            <span class="section-symbol">↗</span>
+          </div>
+          <div class="forecast-list" id="forecastList">
+            <div class="loading-row">Loading forecast…</div>
+          </div>
+        </div>
+
+        <div class="panel details-panel" id="air-quality">
+          <div class="section-heading">
+            <div><p class="eyebrow">RIGHT NOW</p><h2>Weather details</h2></div>
+            <span class="section-symbol">◌</span>
+          </div>
+          <div class="detail-grid">
+            <article class="detail-tile">
+              <div class="detail-top"><span>Feels like</span><span class="tile-icon">♨</span></div>
+              <strong id="detailFeels">--°</strong><p id="feelsDescription">Loading comfort level</p>
+              <div class="meter"><span id="comfortMeter" style="width:45%"></span></div>
+            </article>
+            <article class="detail-tile">
+              <div class="detail-top"><span>Humidity</span><span class="tile-icon">◌</span></div>
+              <strong id="detailHumidity">--%</strong><p>Relative humidity</p>
+              <div class="meter"><span id="humidityMeter" style="width:40%"></span></div>
+            </article>
+            <article class="detail-tile">
+              <div class="detail-top"><span>Wind speed</span><span class="tile-icon">↗</span></div>
+              <strong id="detailWind">-- <small>km/h</small></strong><p id="windDescription">Air movement</p>
+              <div class="meter"><span id="windMeter" style="width:25%"></span></div>
+            </article>
+            <article class="detail-tile">
+              <div class="detail-top"><span>UV index</span><span class="tile-icon">☼</span></div>
+              <strong id="detailUV">--</strong><p id="uvDescription">Sun exposure risk</p>
+              <div class="meter"><span id="uvMeter" style="width:20%"></span></div>
+            </article>
+          </div>
+        </div>
+      </section>
+      <footer class="page-footer"><span>ATMOS © <span id="year"></span></span><span>Made for curious minds <span class="footer-star">✦</span></span></footer>
+    </main>
+  </div>
+</body>
+</html>
