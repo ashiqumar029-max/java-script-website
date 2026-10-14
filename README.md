@@ -1,25 +1,30 @@
-# EXPENZA — Expense Tracker
+# FlowTask — Task Management App
 
-A responsive personal finance dashboard built with HTML, CSS, and vanilla JavaScript.
+A polished, responsive task manager built with HTML, CSS, and vanilla JavaScript.
 
 ## Features
-- Add income and expense transactions with category and date
-- Automatically calculate balance, income, expenses, and savings rate
-- Monthly budget progress and editable budget limit
-- Category spending chart powered by Chart.js
-- Search and filter transactions
-- Export transactions to CSV
-- Local Storage persistence
-- Responsive dark green dashboard
+- Create, edit, complete, and delete tasks
+- Search by task title, description, or category
+- Filter by Today, Upcoming, Completed, and priority
+- Sort by due date, priority, or recently added
+- Due-date and overdue indicators
+- Productivity stats and completion progress
+- Light/dark theme toggle
+- LocalStorage persistence — tasks stay saved in this browser
+- Responsive layout for desktop, tablet, and mobile
 
 ## Run locally
-1. Keep `index.html`, `style.css`, and `script.js` in the same folder.
-2. Open the folder in VS Code.
-3. Use Live Server to run `index.html`, or open it directly in your browser.
-4. Internet is needed for Google Fonts and Chart.js CDN.
+1. Download all four files into the same folder.
+2. Open `index.html` in your browser, or use the VS Code Live Server extension.
 
-## Data and currency
-Transactions and budget are stored in this browser's Local Storage; they are not uploaded to a server. The starter currency is USD. In `script.js`, change `CURRENCY` to a supported ISO code such as `PKR` if needed.
+## Files
+- `index.html` — app structure
+- `style.css` — styling and responsive layout
+- `script.js` — app logic and LocalStorage
+- `README.md` — project documentation
 
-## License
-MIT
+## Deploy
+Upload these individual files to a GitHub repository. You can enable GitHub Pages from **Settings → Pages** and deploy from your main branch.
+
+## Note
+This is a front-end portfolio project. Tasks are stored in the current browser using LocalStorage; they do not sync between devices or users.
